@@ -18,4 +18,9 @@
                     //else the client is assigned to a room
         JoinRoom    //request to join the room with <roomId>
     }
+
+    public static class Constants
+    {
+        public static int MaxTimeOut = 3;
+    }
 }

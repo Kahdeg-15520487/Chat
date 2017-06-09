@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -34,6 +35,11 @@ namespace Server
         public void RemoveClient(TcpClient tcpclient)
         {
             clients.RemoveAll(c => c.tcpclient == tcpclient);
+        }
+
+        internal bool ContainClient(Client client)
+        {
+            return clients.Contains(client);
         }
     }
 }

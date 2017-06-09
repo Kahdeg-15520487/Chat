@@ -64,6 +64,30 @@ namespace SimpleTCP
 
             return listenIps.OrderByDescending(ip => RankIpAddress(ip)).ToList();
         }
+
+        public void Write(TcpClient client, byte[] data)
+        {
+            client.GetStream().Write(data, 0, data.Length);
+        }
+
+        public void Write(TcpClient client,string data)
+        {
+            if (data == null) return;
+            Write(client, StringEncoder.GetBytes(data));
+        }
+
+        public void WriteLine(TcpClient client,string data)
+        {
+            if (string.IsNullOrEmpty(data)) { return; }
+            if (data.LastOrDefault() != Delimiter)
+            {
+                Write(client, data + StringEncoder.GetString(new byte[] { Delimiter }));
+            }
+            else
+            {
+                Write(client, data);
+            }
+        }
         
         public void Broadcast(byte[] data)
         {
