@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5A4F80FD-A7FD-416C-8703-4953A25F3FD2}</ProjectGuid>
+    <ProjectGuid>{C9C99F87-E188-49D2-A323-09FE79F39F8D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Client</RootNamespace>
-    <AssemblyName>Client</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>SimpleTCP</RootNamespace>
+    <AssemblyName>SimpleTCP</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,18 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="Server\ServerListener.cs" />
+    <Compile Include="Server\TcpListenerEx.cs" />
+    <Compile Include="SimpleTcpClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Constants\Constants.csproj">
-      <Project>{29e70026-00a6-4168-b0c6-e89989946cb8}</Project>
-      <Name>Constants</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SimpleTCP\SimpleTCP.csproj">
-      <Project>{c9c99f87-e188-49d2-a323-09fe79f39f8d}</Project>
-      <Name>SimpleTCP</Name>
-    </ProjectReference>
+    <Compile Include="SimpleTcpServer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
