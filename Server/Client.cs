@@ -12,6 +12,8 @@ namespace Server
         public readonly string clientID;
         public readonly TcpClient tcpclient;
 
+        public string roomID { get; set; } = string.Empty;
+
         public Client(TcpClient c)
         {
             clientID = Convert.ToBase64String(Guid.NewGuid().ToByteArray());

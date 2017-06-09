@@ -52,6 +52,10 @@
       <Project>{29e70026-00a6-4168-b0c6-e89989946cb8}</Project>
       <Name>Utility</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IPAddressControlLib\IPAddressControlLib.csproj">
+      <Project>{a5ed2b33-5644-47c4-bc30-a4840f67ff87}</Project>
+      <Name>IPAddressControlLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimpleTCP\SimpleTCP.csproj">
       <Project>{c9c99f87-e188-49d2-a323-09fe79f39f8d}</Project>
       <Name>SimpleTCP</Name>

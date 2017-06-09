@@ -83,12 +83,15 @@ namespace Utility
                 {
                     case "Messages":
                         msgs = (serializer.Deserialize<string>(reader)).ToEnum<Messages>();
+                        isGotCommands = true;
                         break;
                     case "Commands":
                         cmds = (serializer.Deserialize<string>(reader)).ToEnum<Commands>();
+                        isGotMessages = true;
                         break;
                     case "data":
                         data = serializer.Deserialize<string>(reader);
+                        isGotData = true;
                         break;
                 }
             }

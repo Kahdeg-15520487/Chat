@@ -15,39 +15,76 @@ namespace Client
 {
     public class Client
     {
-        SimpleTcpClient tcpclient;
+        public static void Init()
+        {
+            JsonConvert.DefaultSettings = () =>
+            {
+                var settings = new JsonSerializerSettings();
+                settings.Converters.Add(new MessageJsonConverter());
+                return settings;
+            };
+        }
+
+        public SimpleTcpClient client { get; private set; }
 
         public event EventHandler<ClientEventArts> MessageReceived;
         public event EventHandler<ClientEventArts> Disconnected;
 
         public Client(IPAddress ipaddress,int Port)
         {
-            tcpclient = new SimpleTcpClient();
+            client = new SimpleTcpClient();
 
-            tcpclient.Connect(ipaddress.ToString(), Port);
+            client.Connect(ipaddress.ToString(), Port);
 
-            tcpclient.DelimiterDataReceived += Tcpclient_DelimiterDataReceived;    
+            client.DelimiterDataReceived += Tcpclient_DelimiterDataReceived;    
         }
 
-        public void SendMessage(string clientId,string message)
+        /// <summary>
+        /// Send a private message to another client
+        /// </summary>
+        /// <param name="clientId">the receiver's clientID</param>
+        /// <param name="message">the message</param>
+        /// <returns>true if the message is successfully sent</returns>
+        public bool SendMessage(string clientId,string message)
         {
             Package package = new Package(Messages.Request, Commands.Message, clientId + "|" + message);
-            SendPackageToServer(package);
+            Package reply = SendPackageToServer(package, isGetReply: true);
+            return reply.messages == Messages.Success;
         }
 
+        /// <summary>
+        /// broadcast a message to everyone in the room
+        /// </summary>
+        /// <param name="message">the message</param>
         public void BroadcastMessage(string message)
         {
             Package package = new Package(Messages.Request, Commands.Broadcast,message);
             SendPackageToServer(package);
         }
 
-
-        public string GetRoomId()
+        /// <summary>
+        /// request that the server send the roomId in which the client is currently reside in
+        /// </summary>
+        /// <returns>the roomID</returns>
+        public string GetRoomID()
         {
             Package package = new Package(Messages.Request, Commands.GetRoom, "");
             Package reply = SendPackageToServer(package,isGetReply: true);
             string roomId = reply.data;
             //do something with the received roomId;
+            return roomId;
+        }
+
+        /// <summary>
+        /// request that the server create a room
+        /// </summary>
+        /// <returns>the roomID</returns>
+        public string CreateRoom()
+        {
+            Package package = new Package(Messages.Request, Commands.CreateRoom, "");
+            Package reply = SendPackageToServer(package, isGetReply: true);
+            string roomId = reply.data;
+            //do something with the received roomId
             return roomId;
         }
 
@@ -60,18 +97,18 @@ namespace Client
         {
             Package package = new Package(Messages.Request, Commands.JoinRoom, roomId);
             Package reply = SendPackageToServer(package, isGetReply: true);
-            switch (reply.messages)
-            {
-                case Messages.Success:
-                    //joined the room
-                    break;
-                case Messages.Fail:
-                    //the room is not exist
-                    break;
-                default:
-                    break;
-            }
-            return reply.messages == Messages.Accept;
+            return reply.messages == Messages.Success;
+        }
+
+        /// <summary>
+        /// get the clientid of this client
+        /// </summary>
+        /// <returns>the clientid</returns>
+        public string GetClientID()
+        {
+            Package package = new Package(Messages.Request, Commands.GetClientID, "");
+            Package reply = SendPackageToServer(package, isGetReply: true);
+            return reply.data;
         }
 
         private Package SendPackageToServer(Package package, bool isGetReply = false)
@@ -79,13 +116,13 @@ namespace Client
             string packageConverted = JsonConvert.SerializeObject(package);
             if (isGetReply)
             {
-                Message reply = tcpclient.WriteLineAndGetReply(packageConverted, TimeSpan.FromSeconds(Constants.MaxTimeOut));
+                Message reply = client.WriteLineAndGetReply(packageConverted, TimeSpan.FromSeconds(Constants.MaxTimeOut));
                 Package replyPackage = JsonConvert.DeserializeObject<Package>(reply.MessageString);
                 return replyPackage;
             }
             else
             {
-                tcpclient.WriteLine(packageConverted);
+                client.WriteLine(packageConverted);
                 return new Package(Messages.Accept, Commands.Inform, "");
             }
         }
@@ -95,18 +132,10 @@ namespace Client
             Package package = JsonConvert.DeserializeObject<Package>(e.MessageString);
             switch (package.messages)
             {
-                case Messages.Accept:
-                    switch (package.commands)
+                case Messages.Request:
+                    if (package.commands == Commands.Message)
                     {
-                        case Commands.Message:
-                            //receive a message from another clientId
-                            OnMessageReceived(package);
-                            break;
-                        case Commands.Inform:
-                            //get information from server
-                            break;
-                        default:
-                            break;
+                        OnMessageReceived(package);
                     }
                     break;
                 default:

@@ -10,36 +10,54 @@ namespace Server
 {
     public class Room
     {
+        public string name { get; set; }
         public readonly string roomID;
-        public List<Client> clients { get; private set; }
+        public Dictionary<string,Client> clients { get; private set; }
+
+        public int ClientsCount { get { return clients.Keys.Count; } }
 
         public Room()
         {
             roomID = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
-            clients = new List<Client>();
+            name = roomID;
+            clients = new Dictionary<string, Client>();
         }
 
-        public void AddClient(Client c)
+        public void AddClient(Client client)
         {
-            if (!clients.Contains(c))
+            if (!clients.ContainsKey(client.clientID))
             {
-                clients.Add(c);
+                client.roomID = roomID;
+                clients.Add(client.clientID, client);
             }
         }
 
-        public void RemoveClient(string clientid)
+        public void RemoveClient(Client client)
         {
-            clients.RemoveAll(c => string.Compare(c.clientID, clientid) == 0);
+            client.roomID = string.Empty;
+            clients.Remove(client.clientID);
         }
 
         public void RemoveClient(TcpClient tcpclient)
         {
-            clients.RemoveAll(c => c.tcpclient == tcpclient);
+            string markedForRemove = string.Empty;
+            foreach (string key in clients.Keys)
+            {
+                if (clients[key].tcpclient == tcpclient)
+                {
+                    markedForRemove = key;
+                    break;
+                }
+            }
+            if (!string.IsNullOrEmpty(markedForRemove))
+            {
+                clients.Remove(markedForRemove);
+            }
         }
 
         internal bool ContainClient(Client client)
         {
-            return clients.Contains(client);
+            return clients.ContainsKey(client.clientID);
         }
     }
 }
