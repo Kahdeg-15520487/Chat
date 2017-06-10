@@ -1,0 +1,67 @@
+127.0.0.1:63617
+127.0.0.1:63617 sent a msg
+192.168.1.104:49797
+192.168.1.104:49797 sent a msg
+192.168.1.104:49797 sent a msg
+192.168.1.103:64009
+192.168.1.103:64009 sent a msg
+192.168.1.103:64047
+192.168.1.103:64047 sent : {"Messages":"Request","Commands":"GetClientID","data":""}
+192.168.1.103:64047 sent : {"Messages":"Request","Commands":"GetRoom","data":""}
+192.168.1.104:49817
+192.168.1.104:49817 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.104:49817 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.104:49817 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.104:49817 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.103:64056
+192.168.1.103:64056 sent : {"Messages":"Request","Commands":"GetClientID","data":""}
+192.168.1.103:64056 sent : {"Messages":"Request","Commands":"GetRoom","data":""}
+192.168.1.103:64056 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.103:64056 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.103:64072
+192.168.1.103:64072 sent : {"Messages":"Request","Commands":"GetClientID","data":""}
+192.168.1.103:64072 sent : {"Messages":"Request","Commands":"GetRoom","data":""}
+192.168.1.104:49819
+192.168.1.104:49819 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.104:49819 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.104:49819 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.104:49819 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.104:49819 sent : {"Messages":"Request","Commands":"Broadcast","data":"bye"}
+192.168.1.103:64359
+192.168.1.103:64359 sent : {"Messages":"Request","Commands":"GetClientID","data":""}
+192.168.1.103:64359 sent : {"Messages":"Request","Commands":"GetRoom","data":""}
+192.168.1.103:64451
+192.168.1.103:64451 sent : {"Messages":"Request","Commands":"GetClientID","data":""}
+192.168.1.103:64451 sent : {"Messages":"Request","Commands":"GetRoom","data":""}
+192.168.1.103:64540
+192.168.1.103:64540 sent : {"Messages":"Request","Commands":"GetClientID","data":""}
+192.168.1.103:64540 sent : {"Messages":"Request","Commands":"GetRoom","data":""}
+192.168.1.104:49892
+192.168.1.103:64651
+192.168.1.103:64651 sent : {"Messages":"Request","Commands":"GetClientID","data":""}
+192.168.1.103:64651 sent : {"Messages":"Request","Commands":"GetRoom","data":""}
+192.168.1.104:49896
+192.168.1.104:49897
+192.168.1.103:64750
+192.168.1.103:64931
+192.168.1.103:64931 sent : {"Messages":"Request","Commands":"GetClientID","data":""}
+192.168.1.103:64931 sent : {"Messages":"Request","Commands":"GetRoom","data":""}
+192.168.1.104:49899
+192.168.1.104:49899 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.103:65027 connected
+192.168.1.103:65027 sent : {"Messages":"Request","Commands":"GetClientID","data":""}
+192.168.1.103:65027 sent : {"Messages":"Request","Commands":"GetRoom","data":""}
+192.168.1.104:49900 connected
+192.168.1.104:49900 sent : {"Messages":"Request","Commands":"GetClientID","data":""}
+192.168.1.104:49900 sent : {"Messages":"Request","Commands":"GetRoom","data":""}
+192.168.1.104:49900 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.104:49900 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.104:49900 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.104:49900 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.104:49901 connected
+192.168.1.104:49901 sent : {"Messages":"Request","Commands":"GetClientID","data":""}
+192.168.1.104:49901 sent : {"Messages":"Request","Commands":"GetRoom","data":""}
+192.168.1.104:49901 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.104:49901 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.104:49901 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
+192.168.1.104:49901 sent : {"Messages":"Request","Commands":"Broadcast","data":""}

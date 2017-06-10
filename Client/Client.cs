@@ -118,7 +118,6 @@ namespace Client
             {
                 Message reply = client.WriteLineAndGetReply(packageConverted, TimeSpan.FromSeconds(Constants.MaxTimeOut));
                 string message = reply.MessageString.Remove(reply.MessageString.Length - 1);
-                //System.IO.File.WriteAllText("lala.txt", reply.MessageString);
                 Package replyPackage = JsonConvert.DeserializeObject<Package>(message);
                 return replyPackage;
             }

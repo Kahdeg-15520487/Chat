@@ -23,6 +23,6 @@
 
     public static class Constants
     {
-        public static int MaxTimeOut = 3;
+        public static int MaxTimeOut = 10;
     }
 }

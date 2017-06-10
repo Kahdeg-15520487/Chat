@@ -67,7 +67,14 @@ namespace SimpleTCP
 
         public void Write(TcpClient client, byte[] data)
         {
-            client.GetStream().Write(data, 0, data.Length);
+            try
+            {
+                client.GetStream().Write(data, 0, data.Length);
+            }
+            catch (Exception e)
+            {
+                
+            }
         }
 
         public void Write(TcpClient client,string data)

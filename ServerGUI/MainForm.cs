@@ -74,10 +74,10 @@ namespace ServerGUI
             switch (sender)
             {
                 case "Connected":
-                    lvi.SubItems.Add(sender);
+                    lvi.SubItems.Add(sender+" : " + (IPEndPoint)(client.tcpclient.Client.RemoteEndPoint));
                     break;
                 case "Disconected":
-                    lvi.SubItems.Add(sender);
+                    lvi.SubItems.Add(sender + " : " + (IPEndPoint)(client.tcpclient.Client.RemoteEndPoint));
                     break;
                 case "DataReceived":                    
                     lvi.SubItems.Add(ProcessPackage(client,e.package));
@@ -123,6 +123,10 @@ namespace ServerGUI
                         result = string.Format("{0} join a room : {1}", client.clientID, client.roomID);
                         break;
 
+                    case Commands.GetClientID:
+                        result = string.Format("{0} request his clientID", client.clientID);
+                        break;
+
                     default:
                         break;
                 }
@@ -160,6 +164,25 @@ namespace ServerGUI
                 lvi.SubItems.Add(kvp.Value.ClientsCount.ToString());
                 listView_rooms.Items.Add(lvi);
             }
+
+            if (listView_clients.Items.Count>0)
+            {
+                listView_clients.Items.Clear();
+            }
+
+            foreach (var kvp in server.clients)
+            {
+                lvi = new ListViewItem();
+                lvi.Text = kvp.Key;
+                lvi.SubItems.Add(kvp.Value.IP.Address + ":" + kvp.Value.IP.Port);
+                lvi.SubItems.Add(kvp.Value.State.ToString());
+                listView_clients.Items.Add(lvi);
+            }
+        }
+
+        private void button_broadcast_Click(object sender, EventArgs e)
+        {
+            server.BroadcastMessage(txtBox_broadcast.Text);
         }
     }
 }

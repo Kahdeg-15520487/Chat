@@ -42,6 +42,10 @@
             this.roomID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clientsNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button_refresh = new System.Windows.Forms.Button();
+            this.listView_clients = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // ipAddressBox
@@ -90,6 +94,7 @@
             // txtBox_broadcast
             // 
             this.txtBox_broadcast.Enabled = false;
+            this.txtBox_broadcast.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBox_broadcast.Location = new System.Drawing.Point(148, 301);
             this.txtBox_broadcast.Name = "txtBox_broadcast";
             this.txtBox_broadcast.Size = new System.Drawing.Size(553, 20);
@@ -104,6 +109,7 @@
             this.button_broadcast.TabIndex = 7;
             this.button_broadcast.Text = "Send";
             this.button_broadcast.UseVisualStyleBackColor = true;
+            this.button_broadcast.Click += new System.EventHandler(this.button_broadcast_Click);
             // 
             // listView_log
             // 
@@ -111,6 +117,7 @@
             this.STT,
             this.clientID,
             this.package});
+            this.listView_log.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView_log.Location = new System.Drawing.Point(148, 12);
             this.listView_log.Name = "listView_log";
             this.listView_log.Size = new System.Drawing.Size(634, 280);
@@ -138,6 +145,7 @@
             this.listView_rooms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.roomID,
             this.clientsNum});
+            this.listView_rooms.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView_rooms.Location = new System.Drawing.Point(788, 12);
             this.listView_rooms.Name = "listView_rooms";
             this.listView_rooms.Size = new System.Drawing.Size(218, 280);
@@ -164,11 +172,40 @@
             this.button_refresh.UseVisualStyleBackColor = true;
             this.button_refresh.Click += new System.EventHandler(this.button_refresh_Click);
             // 
+            // listView_clients
+            // 
+            this.listView_clients.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.listView_clients.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView_clients.Location = new System.Drawing.Point(1012, 12);
+            this.listView_clients.Name = "listView_clients";
+            this.listView_clients.Size = new System.Drawing.Size(239, 280);
+            this.listView_clients.TabIndex = 11;
+            this.listView_clients.UseCompatibleStateImageBehavior = false;
+            this.listView_clients.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "ClientID";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "IP";
+            this.columnHeader2.Width = 106;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Status";
+            this.columnHeader3.Width = 68;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1007, 330);
+            this.ClientSize = new System.Drawing.Size(1263, 330);
+            this.Controls.Add(this.listView_clients);
             this.Controls.Add(this.button_refresh);
             this.Controls.Add(this.listView_rooms);
             this.Controls.Add(this.listView_log);
@@ -200,6 +237,10 @@
         private System.Windows.Forms.ColumnHeader roomID;
         private System.Windows.Forms.ColumnHeader clientsNum;
         private System.Windows.Forms.Button button_refresh;
+        private System.Windows.Forms.ListView listView_clients;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
 

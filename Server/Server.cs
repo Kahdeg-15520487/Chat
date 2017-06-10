@@ -11,6 +11,7 @@ using SimpleTCP;
 using Newtonsoft.Json;
 using Utility;
 using System.IO;
+using SimpleTCP.Server;
 
 namespace Server
 {
@@ -41,6 +42,8 @@ namespace Server
 
         public Server(int Port)
         {
+            File.AppendAllText("log.txt", "=========" + Environment.NewLine + DateTime.Now.ToString(@"dd\/MM\/yyyy HH:mm") + Environment.NewLine);
+
             server = new SimpleTcpServer();
             server.Start(Port);
 
@@ -61,7 +64,6 @@ namespace Server
             Client client = new Client(e);
             clients.Add(client.clientID,client);
             hall.AddClient(client);
-
             ClientConnected?.Invoke(sender, new ServerEventArgs(client, null));
         }
 
@@ -116,10 +118,10 @@ namespace Server
         {
             Package msg = JsonConvert.DeserializeObject<Package>(e.MessageString);
             Package reply;
-            Client client = clients.First(c => { return c.Value.tcpclient == e.TcpClient; }).Value;
+            Client client = clients.First(c => { return c.Value.tcpclient.IsEqual(e.TcpClient); }).Value;
             Room room = FindRoomThatHaveClient(client);
 
-            File.WriteAllText("lala.txt", msg.ToString());
+            File.AppendAllText("log.txt", string.Format("{0},{1} : {2}{3}", client.clientID, (IPEndPoint)client.tcpclient.Client.RemoteEndPoint, msg, Environment.NewLine));
             PackageDataReceived?.Invoke(sender, new ServerEventArgs(client, msg));
 
             if (msg.messages == Messages.Request)
@@ -248,7 +250,7 @@ namespace Server
 
         private void Server_ClientDisconnected(object sender, TcpClient e)
         {
-            Client client = clients.First(c => { return c.Value.tcpclient == e; }).Value;
+            Client client = clients.First(c => { return c.Value.tcpclient.IsEqual(e); }).Value;
             clients.Remove(client.clientID);
 
             Room room = FindRoomThatHaveClient(client);

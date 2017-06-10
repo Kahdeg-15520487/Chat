@@ -56,7 +56,7 @@
             this.ipAddressBox.ReadOnly = false;
             this.ipAddressBox.Size = new System.Drawing.Size(87, 20);
             this.ipAddressBox.TabIndex = 0;
-            this.ipAddressBox.Text = "52.163.251.125";
+            this.ipAddressBox.Text = "52.187.31.71";
             // 
             // txtBox_port
             // 
@@ -82,6 +82,7 @@
             this.STT,
             this.clientID,
             this.package});
+            this.listView_log.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView_log.Location = new System.Drawing.Point(150, 12);
             this.listView_log.Name = "listView_log";
             this.listView_log.Size = new System.Drawing.Size(379, 212);
@@ -92,14 +93,17 @@
             // STT
             // 
             this.STT.Text = "";
+            this.STT.Width = 27;
             // 
             // clientID
             // 
             this.clientID.Text = "ClientID";
+            this.clientID.Width = 150;
             // 
             // package
             // 
             this.package.Text = "Package";
+            this.package.Width = 195;
             // 
             // button_send
             // 
@@ -115,6 +119,7 @@
             // txtBox_send
             // 
             this.txtBox_send.Enabled = false;
+            this.txtBox_send.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBox_send.Location = new System.Drawing.Point(150, 232);
             this.txtBox_send.Name = "txtBox_send";
             this.txtBox_send.Size = new System.Drawing.Size(298, 20);
@@ -122,6 +127,7 @@
             // 
             // txtBox_roomid
             // 
+            this.txtBox_roomid.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBox_roomid.Location = new System.Drawing.Point(12, 158);
             this.txtBox_roomid.Name = "txtBox_roomid";
             this.txtBox_roomid.ReadOnly = true;
@@ -149,6 +155,7 @@
             // 
             // txtBox_clientid
             // 
+            this.txtBox_clientid.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBox_clientid.Location = new System.Drawing.Point(12, 119);
             this.txtBox_clientid.Name = "txtBox_clientid";
             this.txtBox_clientid.ReadOnly = true;

@@ -93,16 +93,29 @@ namespace SimpleTCP.Server
             {
 				var newClient = _listener.AcceptTcpClient();
 				_connectedClients.Add(newClient);
+
+                //string reply = "henlo";
+                //var data = (Encoding.UTF8).GetBytes(reply);
+                //newClient.GetStream().Write(data, 0, data.Length);
+
                 _parent.NotifyClientConnected(this, newClient);
+                System.IO.File.AppendAllText("incomingconnection.txt", ((IPEndPoint)_connectedClients[_connectedClients.Count - 1].Client.RemoteEndPoint).Address + ":" + ((IPEndPoint)_connectedClients[_connectedClients.Count - 1].Client.RemoteEndPoint).Port + " connected" + Environment.NewLine);
             }
             
             _delimiter = _parent.Delimiter;
 
             foreach (var c in _connectedClients)
             {
+                //int bytesAvailable = c.Available;
+                //if (bytesAvailable == 0)
+                //{
+                //    //Thread.Sleep(10);
+                //    continue;
+                //}
+
                 List<byte> bytesReceived = new List<byte>();
 
-                while (c.Available > 0 && c.Connected)
+                while (c.Available > 0 && IsConnected(c))
                 {
                     byte[] nextByte = new byte[1];
                     c.Client.Receive(nextByte, 0, 1, SocketFlags.None);
@@ -111,6 +124,8 @@ namespace SimpleTCP.Server
                     if (nextByte[0] == _delimiter)
                     {
                         byte[] msg = _queuedMsg.ToArray();
+                        var daata = (Encoding.UTF8).GetString(msg);
+                        System.IO.File.AppendAllText("incomingconnection.txt", ((IPEndPoint)_connectedClients[_connectedClients.Count - 1].Client.RemoteEndPoint).Address + ":" + ((IPEndPoint)_connectedClients[_connectedClients.Count - 1].Client.RemoteEndPoint).Port + " sent : " + daata + Environment.NewLine);
                         _queuedMsg.Clear();
                         _parent.NotifyDelimiterMessageRx(this, c, msg);
                     } else
@@ -124,25 +139,41 @@ namespace SimpleTCP.Server
                     _parent.NotifyEndTransmissionRx(this, c, bytesReceived.ToArray());
                 }
 
-                //if (!c.Connected)
-                if (IsClosed(c))
+                if (IsDisconnected(c))
                 {
                     _disconnectedClients.Add(c);
-                }                
+                }
             }
         }
 
-        private bool IsClosed(TcpClient c)
+        private bool IsConnected(TcpClient c)
         {
-            var state = GetState(c);
-            return state == TcpState.Closed || state == TcpState.Unknown;
+            return c.GetState() == TcpState.Established;
         }
 
-        private TcpState GetState(TcpClient c)
+        private bool IsDisconnected(TcpClient c)
+        {
+            return c.GetState() != TcpState.Established;
+        }
+    }
+
+    public static class TcpClientExtensionMethod
+    {
+        public static bool IsEqual(this TcpClient tcpClient,TcpClient tcpClientOther)
+        {
+            var Client1localep = ((IPEndPoint)tcpClient.Client.LocalEndPoint);
+            var Client1remoteep = ((IPEndPoint)tcpClient.Client.RemoteEndPoint);
+            var Client2localep = ((IPEndPoint)tcpClientOther.Client.LocalEndPoint);
+            var Client2remoteep = ((IPEndPoint)tcpClientOther.Client.RemoteEndPoint);
+
+            return Client1localep.Equals(Client2localep) && Client1remoteep.Equals(Client2remoteep);
+        }
+
+        public static TcpState GetState(this TcpClient c)
         {
             var foo = IPGlobalProperties.GetIPGlobalProperties()
                 .GetActiveTcpConnections()
-                .SingleOrDefault(x => x.LocalEndPoint.Equals(c.Client.LocalEndPoint));
+                .SingleOrDefault(x => x.RemoteEndPoint.Equals(c.Client.RemoteEndPoint));
             return foo != null ? foo.State : TcpState.Unknown;
         }
     }
