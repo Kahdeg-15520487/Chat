@@ -1,7 +1,0 @@
-127.0.0.1:63878 connected
-127.0.0.1:63878 sent : {"Messages":"Request","Commands":"GetClientID","data":""}
-127.0.0.1:63878 sent : {"Messages":"Request","Commands":"GetRoom","data":""}
-127.0.0.1:63878 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
-127.0.0.1:63878 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
-127.0.0.1:63878 sent : {"Messages":"Request","Commands":"Broadcast","data":""}
-127.0.0.1:63878 sent : {"Messages":"Request","Commands":"Broadcast","data":""}

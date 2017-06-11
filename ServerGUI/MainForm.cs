@@ -110,7 +110,7 @@ namespace ServerGUI
                         break;
 
                     //get the roomid of the client
-                    case Commands.GetRoom:
+                    case Commands.GetRoomID:
                         result = string.Format("{0} request his roomID : {1}", client.clientID, client.roomID);
                         break;
 
