@@ -48,18 +48,21 @@ namespace ServerGUI
 
         private void Server_ClientConnected(object sender, ServerEventArgs e)
         {
+            RefreshListView();
             MainThreadOperation temp = MainThreadListViewLog;
             this.Invoke(temp, "Connected", e);
         }
 
         private void Server_PackageDataReceived(object sender, ServerEventArgs e)
         {
+            RefreshListView();
             MainThreadOperation temp = MainThreadListViewLog;
             this.Invoke(temp, "DataReceived", e);
         }
 
         private void Server_ClientDisconnected(object sender, ServerEventArgs e)
         {
+            RefreshListView();
             MainThreadOperation temp = MainThreadListViewLog;
             this.Invoke(temp, "Disconected", e);
         }
@@ -152,7 +155,12 @@ namespace ServerGUI
 
         private void button_refresh_Click(object sender, EventArgs e)
         {
-            if (listView_rooms.Items.Count>0)
+            RefreshListView();
+        }
+
+        private void RefreshListView()
+        {
+            if (listView_rooms.Items.Count > 0)
             {
                 listView_rooms.Items.Clear();
             }
@@ -166,7 +174,7 @@ namespace ServerGUI
                 listView_rooms.Items.Add(lvi);
             }
 
-            if (listView_clients.Items.Count>0)
+            if (listView_clients.Items.Count > 0)
             {
                 listView_clients.Items.Clear();
             }
