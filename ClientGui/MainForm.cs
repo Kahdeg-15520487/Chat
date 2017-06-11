@@ -8,21 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using Client;
+using WartornNetworking.Client;
 using System.Net;
 using System.Net.Sockets;
-using Utility;
+using WartornNetworking.Utility;
 
 namespace ClientGui
 {
     public partial class MainForm : Form
     {
-        Client.Client client;
+        Client client;
         public delegate void MainThreadOperation(string sender, ClientEventArts e);
 
         public MainForm()
         {
-            Client.Client.Init();
+            Client.Init();
             InitializeComponent();
         }
 
@@ -46,7 +46,7 @@ namespace ClientGui
             button_send.Enabled = true;
             txtBox_send.Enabled = true;
 
-            client = new Client.Client(ipAddress, port);
+            client = new Client(ipAddress, port);
             client.MessageReceived += Client_MessageReceived;
             client.Disconnected += Client_Disconnected;
 

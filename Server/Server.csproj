@@ -50,16 +50,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Constants\Utility.csproj">
-      <Project>{29e70026-00a6-4168-b0c6-e89989946cb8}</Project>
-      <Name>Utility</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SimpleTCP\SimpleTCP.csproj">
-      <Project>{c9c99f87-e188-49d2-a323-09fe79f39f8d}</Project>
-      <Name>SimpleTCP</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

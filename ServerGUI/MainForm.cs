@@ -10,18 +10,19 @@ using System.Windows.Forms;
 
 using System.Net;
 using System.Net.Sockets;
-using Utility;
+using WartornNetworking.Utility;
+using WartornNetworking.Server;
 
 namespace ServerGUI
 {
     public partial class MainForm : Form
     {
-        Server.Server server;
-        public delegate void MainThreadOperation(string sender,Server.ServerEventArgs e);
+        Server server;
+        public delegate void MainThreadOperation(string sender,ServerEventArgs e);
 
         public MainForm()
         {
-            Server.Server.Init();
+            Server.Init();
             InitializeComponent();
         }
 
@@ -39,35 +40,35 @@ namespace ServerGUI
             txtBox_broadcast.Enabled = true;
             button_broadcast.Enabled = true;
 
-            server = new Server.Server(port);
+            server = new Server(port);
             server.ClientConnected += Server_ClientConnected;
             server.ClientDisconnected += Server_ClientDisconnected;
             server.PackageDataReceived += Server_PackageDataReceived;
         }
 
-        private void Server_ClientConnected(object sender, Server.ServerEventArgs e)
+        private void Server_ClientConnected(object sender, ServerEventArgs e)
         {
             MainThreadOperation temp = MainThreadListViewLog;
             this.Invoke(temp, "Connected", e);
         }
 
-        private void Server_PackageDataReceived(object sender, Server.ServerEventArgs e)
+        private void Server_PackageDataReceived(object sender, ServerEventArgs e)
         {
             MainThreadOperation temp = MainThreadListViewLog;
             this.Invoke(temp, "DataReceived", e);
         }
 
-        private void Server_ClientDisconnected(object sender, Server.ServerEventArgs e)
+        private void Server_ClientDisconnected(object sender, ServerEventArgs e)
         {
             MainThreadOperation temp = MainThreadListViewLog;
             this.Invoke(temp, "Disconected", e);
         }
 
-        private void MainThreadListViewLog(string sender, Server.ServerEventArgs e)
+        private void MainThreadListViewLog(string sender, ServerEventArgs e)
         {
             ListViewItem lvi = new ListViewItem();
             int stt = listView_log.Items.Count;
-            Server.Client client = e.client;
+            Client client = e.client;
             lvi.Text = stt.ToString();
             lvi.SubItems.Add(client.clientID);
 
@@ -90,7 +91,7 @@ namespace ServerGUI
             listView_log.Items[stt].EnsureVisible();
         }
 
-        private string ProcessPackage(Server.Client client,Package package)
+        private string ProcessPackage(Client client,Package package)
         {
             string result = string.Empty;
             if (package.messages == Messages.Request)
