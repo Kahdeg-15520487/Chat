@@ -78,6 +78,7 @@
             // 
             // listView_log
             // 
+            this.listView_log.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listView_log.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.STT,
             this.clientID,
@@ -85,7 +86,7 @@
             this.listView_log.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView_log.Location = new System.Drawing.Point(150, 12);
             this.listView_log.Name = "listView_log";
-            this.listView_log.Size = new System.Drawing.Size(379, 212);
+            this.listView_log.Size = new System.Drawing.Size(448, 212);
             this.listView_log.TabIndex = 3;
             this.listView_log.UseCompatibleStateImageBehavior = false;
             this.listView_log.View = System.Windows.Forms.View.Details;
@@ -108,7 +109,7 @@
             // button_send
             // 
             this.button_send.Enabled = false;
-            this.button_send.Location = new System.Drawing.Point(454, 230);
+            this.button_send.Location = new System.Drawing.Point(523, 230);
             this.button_send.Name = "button_send";
             this.button_send.Size = new System.Drawing.Size(75, 23);
             this.button_send.TabIndex = 4;
@@ -122,8 +123,9 @@
             this.txtBox_send.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBox_send.Location = new System.Drawing.Point(150, 232);
             this.txtBox_send.Name = "txtBox_send";
-            this.txtBox_send.Size = new System.Drawing.Size(298, 20);
+            this.txtBox_send.Size = new System.Drawing.Size(367, 20);
             this.txtBox_send.TabIndex = 5;
+            this.txtBox_send.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBox_send_KeyUp);
             // 
             // txtBox_roomid
             // 
@@ -166,7 +168,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(539, 261);
+            this.ClientSize = new System.Drawing.Size(610, 261);
             this.Controls.Add(this.txtBox_clientid);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -177,6 +179,7 @@
             this.Controls.Add(this.button_connect);
             this.Controls.Add(this.txtBox_port);
             this.Controls.Add(this.ipAddressBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.Text = "Form1";
             this.ResumeLayout(false);

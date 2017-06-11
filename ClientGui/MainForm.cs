@@ -71,7 +71,9 @@ namespace ClientGui
             ListViewItem lvi = new ListViewItem();
             int stt = listView_log.Items.Count;
             lvi.Text = stt.ToString();
-            lvi.SubItems.Add(e.package.ToString());
+            var datas = e.package.data.Split('|');
+            lvi.SubItems.Add(datas[0]);
+            lvi.SubItems.Add(datas[1]);
 
             listView_log.Items.Add(lvi);
             listView_log.Items[stt].EnsureVisible();
@@ -79,12 +81,33 @@ namespace ClientGui
 
         private void button_send_Click(object sender, EventArgs e)
         {
-            client.BroadcastMessage(txtBox_send.Text);
+            SendMessage();
         }
 
         private void txtBox_roomid_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            
+            using (createjoinroom tempform = new createjoinroom(client))
+            {
+                DialogResult dialogReult = tempform.ShowDialog();
+                if (dialogReult == DialogResult.OK)
+                {
+                    txtBox_roomid.Text = tempform.RoomID;
+                }
+            }
+        }
+
+        private void txtBox_send_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendMessage();
+            }
+        }
+
+        private void SendMessage()
+        {
+            client.BroadcastMessage(txtBox_send.Text.Replace("|", string.Empty));
+            txtBox_send.Text = "";
         }
     }
 }
