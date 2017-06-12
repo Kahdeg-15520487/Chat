@@ -48,8 +48,8 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WartornNetworking, Version=1.0.12.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WartornNetworking.1.0.12\lib\net452\WartornNetworking.dll</HintPath>
+    <Reference Include="WartornNetworking, Version=1.0.17.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WartornNetworking.1.0.17\lib\net452\WartornNetworking.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

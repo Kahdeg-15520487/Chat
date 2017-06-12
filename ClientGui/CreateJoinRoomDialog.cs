@@ -13,13 +13,13 @@ using WartornNetworking.Utility;
 
 namespace ClientGui
 {
-    public partial class createjoinroom : Form
+    public partial class CreateJoinRoomDialog : Form
     {
         private Client client;
 
         public string RoomID { get; private set; }
 
-        public createjoinroom(Client client)
+        public CreateJoinRoomDialog(Client client)
         {
             this.client = client;
             InitializeComponent();

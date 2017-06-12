@@ -45,6 +45,8 @@ namespace ClientGui
 
             button_send.Enabled = true;
             txtBox_send.Enabled = true;
+            button_listrooms.Enabled = true;
+            button_listclients.Enabled = true;
 
             client = new Client(ipAddress, port);
             client.MessageReceived += Client_MessageReceived;
@@ -86,7 +88,7 @@ namespace ClientGui
 
         private void txtBox_roomid_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            using (createjoinroom tempform = new createjoinroom(client))
+            using (CreateJoinRoomDialog tempform = new CreateJoinRoomDialog(client))
             {
                 DialogResult dialogReult = tempform.ShowDialog();
                 if (dialogReult == DialogResult.OK)
@@ -108,6 +110,24 @@ namespace ClientGui
         {
             client.BroadcastMessage(txtBox_send.Text.Replace("|", string.Empty));
             txtBox_send.Text = "";
+        }
+
+        private void button_listrooms_Click(object sender, EventArgs e)
+        {
+            List<string> roomlist = client.GetRooms().ToList();
+            using (ListViewDialog listviewdialog = new ListViewDialog(roomlist))
+            {
+                listviewdialog.ShowDialog();
+            }
+        }
+
+        private void button_listclients_Click(object sender, EventArgs e)
+        {
+            List<string> clientlist = client.GetClients().ToList();
+            using (ListViewDialog listviewdialog = new ListViewDialog(clientlist))
+            {
+                listviewdialog.ShowDialog();
+            }
         }
     }
 }

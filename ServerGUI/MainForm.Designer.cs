@@ -99,11 +99,12 @@
             this.txtBox_broadcast.Name = "txtBox_broadcast";
             this.txtBox_broadcast.Size = new System.Drawing.Size(553, 20);
             this.txtBox_broadcast.TabIndex = 6;
+            this.txtBox_broadcast.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBox_broadcast_KeyUp);
             // 
             // button_broadcast
             // 
             this.button_broadcast.Enabled = false;
-            this.button_broadcast.Location = new System.Drawing.Point(707, 298);
+            this.button_broadcast.Location = new System.Drawing.Point(707, 299);
             this.button_broadcast.Name = "button_broadcast";
             this.button_broadcast.Size = new System.Drawing.Size(75, 23);
             this.button_broadcast.TabIndex = 7;
@@ -215,6 +216,7 @@
             this.Controls.Add(this.button_startserver);
             this.Controls.Add(this.txtBox_port);
             this.Controls.Add(this.ipAddressBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.Text = "Form1";
             this.ResumeLayout(false);

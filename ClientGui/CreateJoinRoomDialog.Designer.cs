@@ -1,6 +1,6 @@
 ﻿namespace ClientGui
 {
-    partial class createjoinroom
+    partial class CreateJoinRoomDialog
     {
         /// <summary>
         /// Required designer variable.

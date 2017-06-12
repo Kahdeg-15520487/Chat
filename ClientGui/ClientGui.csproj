@@ -50,17 +50,23 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WartornNetworking, Version=1.0.12.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WartornNetworking.1.0.12\lib\net452\WartornNetworking.dll</HintPath>
+    <Reference Include="WartornNetworking, Version=1.0.17.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WartornNetworking.1.0.17\lib\net452\WartornNetworking.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="createjoinroom.cs">
+    <Compile Include="CreateJoinRoomDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="createjoinroom.Designer.cs">
-      <DependentUpon>createjoinroom.cs</DependentUpon>
+    <Compile Include="CreateJoinRoomDialog.Designer.cs">
+      <DependentUpon>CreateJoinRoomDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListViewDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListViewDialog.Designer.cs">
+      <DependentUpon>ListViewDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -70,8 +76,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="createjoinroom.resx">
-      <DependentUpon>createjoinroom.cs</DependentUpon>
+    <EmbeddedResource Include="CreateJoinRoomDialog.resx">
+      <DependentUpon>CreateJoinRoomDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListViewDialog.resx">
+      <DependentUpon>ListViewDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

@@ -112,6 +112,11 @@ namespace ServerGUI
                         result = string.Format("{0} broadcasted : {1}", client.clientID, package.data);
                         break;
 
+                    //get the roomid list of the server
+                    case Commands.GetRooms:
+                        result = string.Format("{0} request the roomid list", client.clientID);
+                        break;
+
                     //get the roomid of the client
                     case Commands.GetRoomID:
                         result = string.Format("{0} request his roomID : {1}", client.clientID, client.roomID);
@@ -127,8 +132,14 @@ namespace ServerGUI
                         result = string.Format("{0} join a room : {1}", client.clientID, client.roomID);
                         break;
 
+                    //get the clientid
                     case Commands.GetClientID:
                         result = string.Format("{0} request his clientID", client.clientID);
+                        break;
+
+                    //get the clientid list of the room
+                    case Commands.GetClients:
+                        result = string.Format("{0} request the clientid list", client.clientID);
                         break;
 
                     default:
@@ -191,7 +202,21 @@ namespace ServerGUI
 
         private void button_broadcast_Click(object sender, EventArgs e)
         {
-            server.BroadcastMessage(txtBox_broadcast.Text);
+            BroadcastMessage();
+        }
+
+        private void txtBox_broadcast_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BroadcastMessage();
+            }
+        }
+
+        private void BroadcastMessage()
+        {
+            server.BroadcastMessage(txtBox_broadcast.Text.Replace("|", string.Empty));
+            txtBox_broadcast.Text = "";
         }
     }
 }

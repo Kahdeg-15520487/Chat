@@ -41,6 +41,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtBox_clientid = new System.Windows.Forms.TextBox();
+            this.button_listrooms = new System.Windows.Forms.Button();
+            this.button_listclients = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ipAddressBox
@@ -104,7 +106,7 @@
             // package
             // 
             this.package.Text = "Package";
-            this.package.Width = 195;
+            this.package.Width = 269;
             // 
             // button_send
             // 
@@ -164,11 +166,35 @@
             this.txtBox_clientid.Size = new System.Drawing.Size(132, 20);
             this.txtBox_clientid.TabIndex = 9;
             // 
+            // button_listrooms
+            // 
+            this.button_listrooms.Enabled = false;
+            this.button_listrooms.Location = new System.Drawing.Point(12, 184);
+            this.button_listrooms.Name = "button_listrooms";
+            this.button_listrooms.Size = new System.Drawing.Size(132, 23);
+            this.button_listrooms.TabIndex = 10;
+            this.button_listrooms.Text = "List Rooms";
+            this.button_listrooms.UseVisualStyleBackColor = true;
+            this.button_listrooms.Click += new System.EventHandler(this.button_listrooms_Click);
+            // 
+            // button_listclients
+            // 
+            this.button_listclients.Enabled = false;
+            this.button_listclients.Location = new System.Drawing.Point(12, 213);
+            this.button_listclients.Name = "button_listclients";
+            this.button_listclients.Size = new System.Drawing.Size(132, 23);
+            this.button_listclients.TabIndex = 11;
+            this.button_listclients.Text = "List Clients";
+            this.button_listclients.UseVisualStyleBackColor = true;
+            this.button_listclients.Click += new System.EventHandler(this.button_listclients_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(610, 261);
+            this.Controls.Add(this.button_listclients);
+            this.Controls.Add(this.button_listrooms);
             this.Controls.Add(this.txtBox_clientid);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -202,6 +228,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBox_clientid;
+        private System.Windows.Forms.Button button_listrooms;
+        private System.Windows.Forms.Button button_listclients;
     }
 }
 
